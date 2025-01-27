@@ -461,7 +461,7 @@ body.light-mode .school-link:hover {
     background-position: 100%;
 }
 
-Btn {
+.Btn {
     width: 40px; /* Slightly smaller to fit better */
     height: 40px;
     display: flex;
@@ -515,4 +515,73 @@ body:not(.light-mode) .particle-network-animation::before,
 body:not(.light-mode) .particle-network-animation::after {
     opacity: 0.3; /* Increase opacity for better visibility */
     background-color: transparent; /* Adjusted color */
+}
+
+#home img {
+    display: block;
+    margin: 0 auto;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 15px; /* Slightly shorter */
+    gap: 15px;
+    background-color: #181717;
+    outline: 3px #181717 solid;
+    outline-offset: -3px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 400ms;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.button .text {
+    color: white;
+    font-weight: 700;
+    font-size: 1em;
+    transition: 400ms;
+}
+
+.button svg path {
+    transition: 400ms;
+}
+
+.button:hover {
+    background-color: white; /* Change to white on hover in dark mode */
+}
+
+.button:hover .text {
+    color: #181717; /* Change text color to dark */
+}
+
+.button:hover svg path {
+    fill: #181717; /* Change icon color to dark */
+}
+
+body.light-mode .button {
+    background-color: white; /* White background in light mode */
+    outline: 3px white solid;
+}
+
+body.light-mode .button:hover {
+    background-color: #181717; /* Dark background on hover in light mode */
+}
+
+body.light-mode .button .text {
+    color: #181717; /* Dark text in light mode */
+}
+
+body.light-mode .button:hover .text {
+    color: white; /* White text on hover in light mode */
+}
+
+body.light-mode .button svg path {
+    fill: #181717; /* Dark icon in light mode */
+}
+
+body.light-mode .button:hover svg path {
+    fill: white; /* White icon on hover in light mode */
 }
