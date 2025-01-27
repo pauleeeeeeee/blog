@@ -495,5 +495,4 @@ Btn {
 body:not(.light-mode) .particle-network-animation::before,
 body:not(.light-mode) .particle-network-animation::after {
     opacity: 0.3; /* Increase opacity for better visibility */
-    background-color: rgba(0, 170, 255, 0.2); /* Adjust color if needed */
-}
+    background-color: rgba(0, 170, 255, 0.2); /* Adjust color if needed */}
