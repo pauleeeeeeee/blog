@@ -330,18 +330,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Check local storage for theme preference
-    if (localStorage.getItem('theme') === 'light') {
-        themeCheckbox.checked = true;
-        document.body.classList.add('light-mode');
+    try {
+        if (localStorage.getItem('theme') === 'light') {
+            themeCheckbox.checked = true;
+            document.body.classList.add('light-mode');
+        }
+    } catch (e) {
+        console.warn('Unable to access localStorage:', e);
     }
 
     themeCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            document.body.classList.add('light-mode');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.body.classList.remove('light-mode');
-            localStorage.setItem('theme', 'dark');
+        try {
+            if (this.checked) {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+            }
+        } catch (e) {
+            console.warn('Unable to access localStorage:', e);
         }
     });
 
