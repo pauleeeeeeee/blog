@@ -172,6 +172,17 @@ nav a:hover {
     border-bottom: 2px solid #00aaff;
 }
 
+.school-link {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.school-link:hover {
+    color: #8C1515;
+    text-shadow: 0 0 10px #8C1515;
+}
+
 section {
     padding: 2rem;
 }
@@ -298,6 +309,15 @@ body.light-mode nav a:hover {
 
 body.light-mode .background-overlay {
     background: #f0f0f0;
+}
+
+body.light-mode .school-link {
+    color: #1e1e1e;
+}
+
+body.light-mode .school-link:hover {
+    color: #8C1515;
+    text-shadow: 0 0 10px #8C1515;
 }
 
 .spinner {
@@ -490,8 +510,9 @@ Btn {
     background-color: rgba(156, 156, 156, 0.466);
     backdrop-filter: blur(4px);
 }
-*/
 
 body:not(.light-mode) .particle-network-animation::before,
 body:not(.light-mode) .particle-network-animation::after {
-    opacity: 0.3; /* Increase opacity for better visibility */    background-color: rgba(0, 170, 255, 0.2); /* Adjust color if needed */}
+    opacity: 0.3; /* Increase opacity for better visibility */
+    background-color: transparent; /* Adjusted color */
+}
