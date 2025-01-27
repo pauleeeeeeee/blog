@@ -1,0 +1,499 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    position: relative;
+    color: #f0f0f0;
+    z-index: 1; /* Ensure content is above the background */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    background-image: radial-gradient(circle, rgba(0,170,255,0.1) 1px, transparent 1px),
+                      radial-gradient(circle, rgba(0,170,255,0.1) 1px, transparent 1px);
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+    animation: moveBackground 60s linear infinite;
+    z-index: -1;
+}
+
+.particle-network-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it is behind all other elements */
+    pointer-events: none; /* Allow interactions with elements above */
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+.particle-network-animation::before {
+    z-index: -2;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* Removed background image */
+    /* background-image: url(https://images.unsplash.com/photo-1450849608880-6f787542c88a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=786a67dca1d8791d181bfd90b16240d9); */
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.2;
+}
+
+.glow {
+    z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.025), transparent);
+    transform: translate(-50%, -50%) scale(1); /* Ensure no unwanted scaling */
+}
+
+.glow-1, .glow-2, .glow-3 {
+    /* Ensure consistent sizing */
+    width: 150vw;
+    height: 150vh;
+    margin-top: -75vh;
+    margin-left: -75vw;
+}
+
+@media (max-width: 768px) {
+    .glow-1, .glow-2, .glow-3 {
+        width: 200vw;
+        height: 200vh;
+        margin-top: -100vh;
+        margin-left: -100vw;
+    }
+}
+
+@keyframes glow-1-move {
+    from {
+        transform: translate(-100%, 100%);
+    }
+    to {
+        transform: translate(100%, -100%);
+    }
+}
+
+@keyframes glow-2-move {
+    from {
+        transform: translate(-100%, 0%);
+    }
+    to {
+        transform: translate(100%, 100%);
+    }
+}
+
+@keyframes glow-3-move {
+    from {
+        transform: translate(100%, 100%);
+    }
+    to {
+        transform: translate(0%, -100%);
+    }
+}
+
+.background-overlay {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #1e1e1e;
+    /* Ensure background does not interfere with animation */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes moveBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+header {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative; /* Added to allow z-index to take effect */
+    z-index: 10; /* Higher z-index to appear above animation */
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    margin: 1rem 0;
+    text-align: center;
+    position: relative; /* Added to allow z-index to take effect */
+    z-index: 10; /* Higher z-index to appear above animation */
+}
+
+nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #f0f0f0;
+}
+
+nav a:hover {
+    color: #00aaff;
+    border-bottom: 2px solid #00aaff;
+}
+
+section {
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 1rem;
+    }
+}
+
+footer {
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 10; /* Higher z-index to appear above animation */
+}
+
+/* Neural Network Animation */
+@keyframes animate {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.background-overlay::before,
+.background-overlay::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,170,255,0.1) 1px, transparent 1px);
+    animation: animate 10s linear infinite;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.background-overlay::after {
+    animation-delay: -5s;
+}
+
+.theme-checkbox {
+  --toggle-size: 14px; /* Increased size */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 4em; /* Adjusted width */
+  height: 2em; /* Adjusted height */
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 0;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 99em;
+  cursor: pointer;
+  font-size: var(--toggle-size);
+  z-index: 20; /* Ensure it is above other elements */
+}
+
+.theme-checkbox::before {
+  content: "";
+  width: 1.5em; /* Adjusted size */
+  height: 1.5em; /* Adjusted size */
+  position: absolute;
+  top: 0.25em; /* Adjusted position */
+  left: 0.25em; /* Adjusted position */
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+  background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+  background-size: 205%;
+  background-position: 100%;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+  left: calc(100% - 1.5em - 0.25em); /* Adjusted position */
+  background-position: 0;
+}
+
+.theme-checkbox:checked {
+  background-position: 100%;
+}
+
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #1e1e1e;
+}
+
+body.light-mode header,
+body.light-mode footer {
+    background-color: rgba(240, 240, 240, 0.9);
+    color: #1e1e1e;
+}
+
+body.light-mode nav a {
+    color: #1e1e1e;
+}
+
+body.light-mode nav a:hover {
+    color: #0077cc;
+    border-bottom: 2px solid #0077cc;
+}
+
+body.light-mode .background-overlay {
+    background: #f0f0f0;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  animation: spinner-y0fdc1 2s infinite ease;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner > div {
+  background-color: rgba(140, 21, 21, 0.2); /* Updated color */
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  border: 2px solid #8C1515; /* Updated color */
+  box-shadow: 0 0 10px #8C1515; /* Added glow effect */
+}
+
+.spinner div:nth-of-type(1) {
+  transform: translateZ(-22px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+  transform: rotateY(-270deg) translateX(50%);
+  transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+  transform: rotateY(270deg) translateX(-50%);
+  transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+  transform: rotateX(-90deg) translateY(50%);
+  transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+  transform: translateZ(22px);
+}
+
+@keyframes spinner-y0fdc1 {
+  0% {
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+  }
+  50% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+  100% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+  }
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 1s ease; /* Added transition for fade effect */
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent interactions when hidden */
+}
+
+/* New container for theme toggle and GitHub button */
+.theme-toggle-container {
+    position: absolute; /* Changed back to absolute from fixed */
+    top: 1rem; /* Align with theme-checkbox */
+    right: 1rem; /* Place container near top-right */
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between button and checkbox */
+    z-index: 20; /* Ensure container is above other elements */
+}
+
+/* Theme Checkbox */
+.theme-checkbox {
+    /* Remove absolute positioning */
+    position: relative; /* Changed from absolute */
+    top: 0; /* Reset */
+    right: 0; /* Reset */
+    --toggle-size: 14px; /* Increased size */
+    width: 4em; /* Adjusted width */
+    height: 2em; /* Adjusted height */
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background-size: 205%;
+    background-position: 0;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 99em;
+    cursor: pointer;
+    font-size: var(--toggle-size);
+    z-index: 20; /* Ensure it is above other elements */
+}
+
+.theme-checkbox::before {
+    content: "";
+    width: 1.5em; /* Adjusted size */
+    height: 1.5em; /* Adjusted size */
+    position: absolute;
+    top: 0.25em; /* Adjusted position */
+    left: 0.25em; /* Adjusted position */
+    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
+    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background-size: 205%;
+    background-position: 100%;
+    border-radius: 50%;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+    left: calc(100% - 1.5em - 0.25em); /* Adjusted position */
+    background-position: 0;
+}
+
+.theme-checkbox:checked {
+    background-position: 100%;
+}
+
+Btn {
+    width: 40px; /* Slightly smaller to fit better */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative; /* Changed to relative positioning */
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.svgContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    border: 1px solid rgba(156, 156, 156, 0.466);
+}
+
+.BG {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #181818;
+    z-index: -1;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.Btn:hover .BG {
+    transform: rotate(35deg);
+    transform-origin: bottom;
+}
+
+.Btn:hover .svgContainer {
+    background-color: rgba(156, 156, 156, 0.466);
+    backdrop-filter: blur(4px);
+}
+*/
+
+body:not(.light-mode) .particle-network-animation::before,
+body:not(.light-mode) .particle-network-animation::after {
+    opacity: 0.3; /* Increase opacity for better visibility */
+    background-color: rgba(0, 170, 255, 0.2); /* Adjust color if needed */
+}
