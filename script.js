@@ -371,16 +371,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderLanguagesAndTools() {
         const toolsContainer = document.querySelector('#about .tools-container');
         if (!toolsContainer.innerHTML) {
-            const toolsHTML = `
-                <img src="https://skillicons.dev/icons?i=anaconda,androidstudio,apple,arduino,aws,azure,bash,blender,c,cpp,cloudflare,css,discord,docker,elasticsearch,firebase,flask,gcp,git,github,githubactions,gitlab,gmail,godot,html,instagram,java,js,kali,latex,linkedin,linux,md,matlab,mint,mongodb,mysql,nodejs,obsidian,opencv,powershell,py,pytorch,raspberrypi,replit,stackoverflow,sublime,tensorflow,ubuntu,unity,unreal,vim,visualstudio,vscode,windows,wordpress" />
-            `;
-            toolsContainer.innerHTML = toolsHTML;
+            const icons = [
+                'anaconda', 'androidstudio', 'apple', 'arduino', 'aws', 'azure', 'bash', 'blender', 'c', 'cpp', 
+                'cloudflare', 'css', 'discord', 'docker', 'elasticsearch', 'firebase', 'flask', 'gcp', 'git', 
+                'github', 'githubactions', 'gitlab', 'gmail', 'godot', 'html', 'instagram', 'java', 'js', 'kali', 
+                'latex', 'linkedin', 'linux', 'md', 'matlab', 'mint', 'mongodb', 'mysql', 'nodejs', 'obsidian', 
+                'opencv', 'powershell', 'py', 'pytorch', 'raspberrypi', 'replit', 'stackoverflow', 'sublime', 
+                'tensorflow', 'ubuntu', 'unity', 'unreal', 'vim', 'visualstudio', 'vscode', 'windows', 'wordpress'
+            ];
 
-            const toolIcons = document.querySelectorAll('.tools-container img');
-            toolIcons.forEach((icon, index) => {
+            icons.forEach((icon, index) => {
+                const img = document.createElement('img');
+                img.src = `https://skillicons.dev/icons?i=${icon}`;
+                img.style.opacity = 0;
+                img.style.transition = 'opacity 0.3s ease-in-out';
+                img.style.margin = '5px'; // Add margin for compact layout
+                toolsContainer.appendChild(img);
+
                 setTimeout(() => {
-                    icon.style.opacity = 1;
-                }, index * 451);
+                    img.style.opacity = 1;
+                }, index * 300); // Slightly faster rendering
             });
         }
     }
