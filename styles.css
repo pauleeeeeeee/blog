@@ -590,3 +590,8 @@ body.light-mode .button:hover svg path {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
+
+.tools-container a img {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
