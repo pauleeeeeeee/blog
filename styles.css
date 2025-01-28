@@ -12,7 +12,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif; /* Updated font-family */
     background-color: #1e1e1e;
     position: relative;
     color: #f0f0f0;
@@ -41,7 +41,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Increased from -1 to 0 */
+    z-index: -1; /* Ensure it is behind content */
     pointer-events: none; /* Allow interactions with elements above */
     overflow: hidden; /* Prevent overflow issues */
 }
@@ -55,7 +55,6 @@ body::before {
     bottom: 0;
     left: 0;
     /* Removed background image */
-    /* background-image: url(https://images.unsplash.com/photo-1450849608880-6f787542c88a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=786a67dca1d8791d181bfd90b16240d9); */
     background-position: center center;
     background-size: cover;
     opacity: 0.2;
@@ -152,6 +151,10 @@ header {
 
 header h1 {
     margin: 0;
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: 700; /* Bold font */
+    color: #ffffff; /* White color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
 }
 
 nav {
@@ -165,6 +168,8 @@ nav a {
     margin: 0 1rem;
     text-decoration: none;
     color: #f0f0f0;
+    font-size: 1.2rem; /* Increased font size */
+    font-weight: 500; /* Medium font weight */
 }
 
 nav a:hover {
@@ -176,6 +181,8 @@ nav a:hover {
     color: #f0f0f0;
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
+    font-size: 1.1rem; /* Increased font size */
+    font-weight: 500; /* Medium font weight */
 }
 
 .school-link:hover {
@@ -185,6 +192,28 @@ nav a:hover {
 
 section {
     padding: 2rem;
+}
+
+section h2 {
+    font-size: 2rem; /* Increased font size */
+    font-weight: 600; /* Semi-bold font */
+    color: #ffffff; /* White color */
+    text-align: center; /* Centered text */
+    margin-bottom: 1rem; /* Added margin */
+}
+
+section p, section ul {
+    font-size: 1.1rem; /* Increased font size */
+    line-height: 1.6; /* Improved line height */
+    color: #d0d0d0; /* Lighter color for better readability */
+}
+
+section ul {
+    padding-left: 1.5rem; /* Added padding */
+}
+
+section ul li {
+    margin-bottom: 0.5rem; /* Added margin */
 }
 
 @media (max-width: 768px) {
@@ -208,7 +237,6 @@ footer {
     z-index: 10; /* Higher z-index to appear above animation */
 }
 
-/* Neural Network Animation */
 @keyframes animate {
     0% {
         transform: translateY(0);
@@ -256,7 +284,6 @@ footer {
   transition: 0.4s;
   border-radius: 99em;
   cursor: pointer;
-  font-size: var(--toggle-size);
   z-index: 20; /* Ensure it is above other elements */
 }
 
@@ -541,7 +568,7 @@ body:not(.light-mode) .particle-network-animation::after {
 .button .text {
     color: white;
     font-weight: 700;
-    font-size: 1em;
+    font-size: 1.1rem; /* Increased font size */
     transition: 400ms;
 }
 
@@ -603,6 +630,14 @@ body.light-mode .button:hover svg path {
 
 .tools-container img {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     margin: 5px; /* Add margin for compact layout */
+}
+
+/* Tooltip styles */
+.tooltip-container,
+.tooltip-container::before,
+.tooltip-container .text,
+.tooltip {
+    display: none; /* Hide tooltip styles */
 }

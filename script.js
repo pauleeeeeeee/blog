@@ -337,9 +337,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (localStorage.getItem('theme') === 'light') {
             themeCheckbox.checked = true;
             document.body.classList.add('light-mode');
+        } else {
+            themeCheckbox.checked = false;
+            document.body.classList.remove('light-mode');
         }
     } catch (e) {
         console.warn('Unable to access localStorage:', e);
+        themeCheckbox.checked = false;
+        document.body.classList.remove('light-mode');
     }
 
     themeCheckbox.addEventListener('change', function() {
@@ -370,28 +375,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderLanguagesAndTools() {
         const toolsContainer = document.querySelector('#about .tools-container');
-        if (!toolsContainer.innerHTML) {
-            const icons = [
-                'anaconda', 'androidstudio', 'apple', 'arduino', 'aws', 'azure', 'bash', 'blender', 'c', 'cpp', 
-                'cloudflare', 'css', 'discord', 'docker', 'elasticsearch', 'firebase', 'flask', 'gcp', 'git', 
-                'github', 'githubactions', 'gitlab', 'gmail', 'godot', 'html', 'instagram', 'java', 'js', 'kali', 
-                'latex', 'linkedin', 'linux', 'md', 'matlab', 'mint', 'mongodb', 'mysql', 'nodejs', 'obsidian', 
-                'opencv', 'powershell', 'py', 'pytorch', 'raspberrypi', 'replit', 'stackoverflow', 'sublime', 
-                'tensorflow', 'ubuntu', 'unity', 'unreal', 'vim', 'visualstudio', 'vscode', 'windows', 'wordpress'
-            ];
+        toolsContainer.innerHTML = ''; // Clear existing content
+        const icons = [
+            'anaconda', 'androidstudio', 'apple', 'arduino', 'aws', 'azure', 'bash', 'blender', 'c', 'cpp', 
+            'cloudflare', 'css', 'discord', 'docker', 'elasticsearch', 'firebase', 'flask', 'gcp', 'git', 
+            'github', 'githubactions', 'gitlab', 'gmail', 'godot', 'html', 'instagram', 'java', 'js', 'kali', 
+            'latex', 'linkedin', 'linux', 'md', 'matlab', 'mint', 'mongodb', 'mysql', 'nodejs', 'obsidian', 
+            'opencv', 'powershell', 'py', 'pytorch', 'raspberrypi', 'replit', 'stackoverflow', 'sublime', 
+            'tensorflow', 'ubuntu', 'unity', 'unreal', 'vim', 'visualstudio', 'vscode', 'windows', 'wordpress'
+        ];
 
-            icons.forEach((icon, index) => {
-                const img = document.createElement('img');
-                img.src = `https://skillicons.dev/icons?i=${icon}`;
-                img.style.opacity = 0;
-                img.style.transition = 'opacity 0.3s ease-in-out';
-                img.style.margin = '5px'; // Add margin for compact layout
-                toolsContainer.appendChild(img);
+        icons.forEach((icon, index) => {
+            const img = document.createElement('img');
+            img.src = `https://skillicons.dev/icons?i=${icon}`;
+            img.style.opacity = 0;
+            img.style.transition = 'opacity 0.5s ease-in-out';
+            img.style.margin = '5px'; // Add margin for compact layout
+            toolsContainer.appendChild(img);
 
-                setTimeout(() => {
-                    img.style.opacity = 1;
-                }, index * 300); // Slightly faster rendering
-            });
-        }
+            setTimeout(() => {
+                img.style.opacity = 1;
+            }, index * 200); // Slightly faster rendering
+        });
     }
 });
