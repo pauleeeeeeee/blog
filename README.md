@@ -1,5 +1,5 @@
 # home
 
-ive got no idea what im doing T-T
+personal webpage for my projects, contact, about me, will update more in the future
 
 https://pauleeeeeeee.github.io/home/
