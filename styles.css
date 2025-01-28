@@ -347,6 +347,13 @@ body.light-mode .school-link:hover {
     text-shadow: 0 0 10px #8C1515;
 }
 
+body.light-mode section h2,
+body.light-mode section p,
+body.light-mode section ul,
+body.light-mode section ul li {
+    color: #1e1e1e; /* Ensure text is black in light mode */
+}
+
 .spinner {
   width: 44px;
   height: 44px;
@@ -640,4 +647,64 @@ body.light-mode .button:hover svg path {
 .tooltip-container .text,
 .tooltip {
     display: none; /* Hide tooltip styles */
+}
+
+/* New button styles */
+.button-icon {
+    display: flex;
+    border: 3px #fff solid;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    margin: 0 auto; /* Center the button */
+}
+
+.icon {
+    background-color: #fff;
+    padding: 10px 10px 5px 10px;
+}
+
+.icon svg {
+    width: 25px;
+    height: 25px;
+}
+
+.cube {
+    transition: all 0.4s;
+    transform-style: preserve-3d;
+    width: 200px;
+    height: 20px;
+}
+
+.button-icon:hover {
+    border-color: #8C1515; /* Stanford red color */
+}
+
+.button-icon:hover .cube {
+    transform: rotateX(90deg);
+}
+
+.side {
+    position: absolute;
+    height: 47px;
+    width: 200px;
+    display: flex;
+    font-size: 0.8em;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+}
+
+.top {
+    background: #8C1515; /* Stanford red color */
+    color: #fff;
+    transform: rotateX(-90deg) translate3d(0, 13.5px, 2em);
+}
+
+.front {
+    background: #222229;
+    color: #fff;
+    transform: translate3d(0, 0, 1em);
 }
