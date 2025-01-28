@@ -585,3 +585,8 @@ body.light-mode .button svg path {
 body.light-mode .button:hover svg path {
     fill: white; /* White icon on hover in light mode */
 }
+
+.tools-container a {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
