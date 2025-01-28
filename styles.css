@@ -166,8 +166,6 @@ nav {
 
 nav a {
     margin: 0 1rem;
-    text-decoration: none;
-    color: #f0f0f0;
     font-size: 1.2rem; /* Increased font size */
     font-weight: 500; /* Medium font weight */
 }
@@ -175,6 +173,18 @@ nav a {
 nav a:hover {
     color: #00aaff;
     border-bottom: 2px solid #00aaff;
+}
+
+a {
+    color: #8C1515; /* Stanford red color */
+    text-decoration: none;
+    transition: color 0.3s, opacity 0.3s;
+}
+
+a:hover {
+    color: #8C1515; /* Maintain Stanford red color */
+    opacity: 0.7; /* Slightly fade on hover */
+    text-decoration: none; /* Remove underline on hover */
 }
 
 .school-link {
@@ -707,4 +717,84 @@ body.light-mode .button:hover svg path {
     background: #222229;
     color: #fff;
     transform: translate3d(0, 0, 1em);
+}
+
+/* New button styles */
+.btn2 {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid #fefefe;
+    text-transform: uppercase;
+    color: #fefefe;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.btn2::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background-color: #212121;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+}
+
+.btn2::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    background-color: #212121;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+}
+
+.btn2:hover::before {
+    transform: translateY(-25px);
+    height: 0;
+}
+
+.btn2:hover::after {
+    transform: scaleX(0);
+    transition-delay: 0.15s;
+}
+
+.btn2:hover {
+    border: 2px solid #fefefe;
+    color: #8C1515; /* Stanford red color */
+}
+
+.btn2 span {
+    position: relative;
+    z-index: 3;
+}
+
+button {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+}
+
+/* Light mode adjustments */
+body.light-mode .btn2 {
+    color: #1e1e1e; /* Dark text color */
+    border: 2px solid #1e1e1e; /* Dark border color */
+}
+
+body.light-mode .btn2::before,
+body.light-mode .btn2::after {
+    background-color: #f0f0f0; /* Light background color */
+}
+
+body.light-mode .btn2:hover {
+    color: #8C1515; /* Stanford red color on hover */
+    border: 2px solid #8C1515; /* Stanford red border on hover */
 }
