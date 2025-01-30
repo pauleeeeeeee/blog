@@ -12,7 +12,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    font-family: 'Roboto', Arial, sans-serif; /* Updated font-family */
+    font-family: Arial, sans-serif;
     background-color: #1e1e1e;
     position: relative;
     color: #f0f0f0;
@@ -41,7 +41,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ensure it is behind content */
+    z-index: -1; /* Ensure it is behind all text and images */
     pointer-events: none; /* Allow interactions with elements above */
     overflow: hidden; /* Prevent overflow issues */
 }
@@ -55,6 +55,7 @@ body::before {
     bottom: 0;
     left: 0;
     /* Removed background image */
+    /* background-image: url(https://images.unsplash.com/photo-1450849608880-6f787542c88a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=786a67dca1d8791d181bfd90b16240d9); */
     background-position: center center;
     background-size: cover;
     opacity: 0.2;
@@ -151,10 +152,6 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem; /* Increased font size */
-    font-weight: 700; /* Bold font */
-    color: #ffffff; /* White color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
 }
 
 nav {
@@ -166,8 +163,8 @@ nav {
 
 nav a {
     margin: 0 1rem;
-    font-size: 1.2rem; /* Increased font size */
-    font-weight: 500; /* Medium font weight */
+    text-decoration: none;
+    color: #f0f0f0;
 }
 
 nav a:hover {
@@ -175,24 +172,10 @@ nav a:hover {
     border-bottom: 2px solid #00aaff;
 }
 
-a {
-    color: #8C1515; /* Stanford red color */
-    text-decoration: none;
-    transition: color 0.3s, opacity 0.3s;
-}
-
-a:hover {
-    color: #8C1515; /* Maintain Stanford red color */
-    opacity: 0.7; /* Slightly fade on hover */
-    text-decoration: none; /* Remove underline on hover */
-}
-
 .school-link {
     color: #f0f0f0;
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
-    font-size: 1.1rem; /* Increased font size */
-    font-weight: 500; /* Medium font weight */
 }
 
 .school-link:hover {
@@ -202,28 +185,6 @@ a:hover {
 
 section {
     padding: 2rem;
-}
-
-section h2 {
-    font-size: 2rem; /* Increased font size */
-    font-weight: 600; /* Semi-bold font */
-    color: #ffffff; /* White color */
-    text-align: center; /* Centered text */
-    margin-bottom: 1rem; /* Added margin */
-}
-
-section p, section ul {
-    font-size: 1.1rem; /* Increased font size */
-    line-height: 1.6; /* Improved line height */
-    color: #d0d0d0; /* Lighter color for better readability */
-}
-
-section ul {
-    padding-left: 1.5rem; /* Added padding */
-}
-
-section ul li {
-    margin-bottom: 0.5rem; /* Added margin */
 }
 
 @media (max-width: 768px) {
@@ -247,6 +208,7 @@ footer {
     z-index: 10; /* Higher z-index to appear above animation */
 }
 
+/* Neural Network Animation */
 @keyframes animate {
     0% {
         transform: translateY(0);
@@ -294,6 +256,7 @@ footer {
   transition: 0.4s;
   border-radius: 99em;
   cursor: pointer;
+  font-size: var(--toggle-size);
   z-index: 20; /* Ensure it is above other elements */
 }
 
@@ -355,13 +318,6 @@ body.light-mode .school-link {
 body.light-mode .school-link:hover {
     color: #8C1515;
     text-shadow: 0 0 10px #8C1515;
-}
-
-body.light-mode section h2,
-body.light-mode section p,
-body.light-mode section ul,
-body.light-mode section ul li {
-    color: #1e1e1e; /* Ensure text is black in light mode */
 }
 
 .spinner {
@@ -585,7 +541,7 @@ body:not(.light-mode) .particle-network-animation::after {
 .button .text {
     color: white;
     font-weight: 700;
-    font-size: 1.1rem; /* Increased font size */
+    font-size: 1em;
     transition: 400ms;
 }
 
@@ -606,6 +562,50 @@ body:not(.light-mode) .particle-network-animation::after {
 }
 
 body.light-mode .button {
+    background-color: white; /* White background in light mode */
+    outline: 3px white solid;
+}
+
+body.light-mode .button:hover {
+    background-color: #181717; /* Dark background on hover in light mode */
+}
+
+body.light-mode .button .text {
+    color: #181717; /* Dark text in light mode */
+}
+
+body.light-mode .button:hover .text {
+    color: white; /* White text on hover in light mode */
+}
+
+body.light-mode .button svg path {
+    fill: #181717; /* Dark icon in light mode */
+}
+
+body.light-mode .button:hover svg path {
+    fill: white; /* White icon on hover in light mode */
+}
+
+.tools-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Adjust gap for more compact layout */
+    max-width: 600px; /* Limit the width for a more compact horizontal space */
+    margin: 0 auto; /* Center the container */
+}
+
+.tools-container a {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tools-container img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    margin: 5px; /* Add margin for compact layout */
+}
     background-color: white; /* White background in light mode */
     outline: 3px white solid;
 }
