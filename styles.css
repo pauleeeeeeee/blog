@@ -41,7 +41,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ensure it is behind all text and images */
+    z-index: -5; /* Lowered z-index to ensure it's behind all content */
     pointer-events: none; /* Allow interactions with elements above */
     overflow: hidden; /* Prevent overflow issues */
 }
@@ -121,7 +121,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -3; /* Ensure this is behind body::before */
+    z-index: -10; /* Adjusted z-index to be above .particle-network-animation but below content */
     background: #1e1e1e;
     /* Ensure background does not interfere with animation */
 }
@@ -562,50 +562,6 @@ body:not(.light-mode) .particle-network-animation::after {
 }
 
 body.light-mode .button {
-    background-color: white; /* White background in light mode */
-    outline: 3px white solid;
-}
-
-body.light-mode .button:hover {
-    background-color: #181717; /* Dark background on hover in light mode */
-}
-
-body.light-mode .button .text {
-    color: #181717; /* Dark text in light mode */
-}
-
-body.light-mode .button:hover .text {
-    color: white; /* White text on hover in light mode */
-}
-
-body.light-mode .button svg path {
-    fill: #181717; /* Dark icon in light mode */
-}
-
-body.light-mode .button:hover svg path {
-    fill: white; /* White icon on hover in light mode */
-}
-
-.tools-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 5px; /* Adjust gap for more compact layout */
-    max-width: 600px; /* Limit the width for a more compact horizontal space */
-    margin: 0 auto; /* Center the container */
-}
-
-.tools-container a {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.tools-container img {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    margin: 5px; /* Add margin for compact layout */
-}
     background-color: white; /* White background in light mode */
     outline: 3px white solid;
 }
