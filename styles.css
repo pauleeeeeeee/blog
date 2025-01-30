@@ -41,7 +41,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -5; /* Lowered z-index to ensure it's behind all content */
+    z-index: -9; /* Lowered z-index to ensure it's behind all content */
     pointer-events: none; /* Allow interactions with elements above */
     overflow: hidden; /* Prevent overflow issues */
 }
