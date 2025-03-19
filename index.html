@@ -45,6 +45,9 @@
             <a href="#projects" class="btn2"><span class="spn2">Projects</span></a>
         </button>
         <button>
+            <a href="#blog" class="btn2"><span class="spn2">Blog</span></a>
+        </button>
+        <button>
             <a href="#contact" class="btn2"><span class="spn2">Contact</span></a>
         </button>
     </nav>
@@ -81,12 +84,22 @@
     </section>
     <section id="projects" style="display: none;">
         <h2>My Projects</h2>
-        <ul>
-            <li>OHSCO Final Project: I modeled the Aristotelian solar system for a philosophy class. Check out the <a href="https://github.com/Society451/OHSCO-Fall-Final-Project" target="_blank" rel="noopener noreferrer">GitHub</a> repository and <a href="https://society451.github.io/OHSCO-Fall-Final-Project/" target="_blank" rel="noopener noreferrer">Demo</a>.</li>
-            <li>Unofficial Pronto API: A Python wrapper for the official Pronto API, used in the Better Pronto Alpha client. <a href="https://github.com/Society451/Unofficial-Pronto-API" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li>OHSMP Official Website: The official website for OHSMP, running a Minecraft server for OHS. (Demo available at <a href="http://ohsmp.com" target="_blank" rel="noopener noreferrer">ohsmp.com</a>, still under construction)</li>
-            <li>Auto Book Cataloger: Leveraging machine learning and OCR (Optical Character Recognition) to scan a certain database collected from a nearby private university of 1.5 million images of books, extract text from said images of varrying quality, assemble it into PDF format, and create a searchable database of the 1 billion word content. (Still underway, please send help TT)</li>
-            <li>I'm currently working on <a href="https://github.com/Better-Pronto" target="_blank" rel="noopener noreferrer">The Better Pronto Project</a>, which aims to enhance Stanford OHS's official chat platform by developing a faster, more intuitive, and overall improved client.</li>
+        <ul class="project-list">
+            <li>
+                <strong class="highlight">OHSCO Final Project:</strong> I modeled the Aristotelian solar system for a philosophy class. Check out the <a href="https://github.com/Society451/OHSCO-Fall-Final-Project" target="_blank" rel="noopener noreferrer">GitHub</a> repository and <a href="https://society451.github.io/OHSCO-Fall-Final-Project/" target="_blank" rel="noopener noreferrer">Demo</a>.
+            </li>
+            <li>
+                <strong class="highlight">Unofficial Pronto API:</strong> A Python wrapper for the official Pronto API, used in the Better Pronto Alpha client. <a href="https://github.com/Society451/Unofficial-Pronto-API" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </li>
+            <li>
+                <strong class="highlight">OHSMP Official Website:</strong> The official website for OHSMP, running a Minecraft server for OHS. (Demo available at <a href="http://ohsmp.com" target="_blank" rel="noopener noreferrer">ohsmp.com</a>, still under construction)
+            </li>
+            <li>
+                <strong class="highlight">Auto Book Cataloger:</strong> Leveraging machine learning and OCR (Optical Character Recognition) to scan a certain database collected from a nearby private university of 1.5 million images of books, extract text from said images of varrying quality, assemble it into PDF format, and create a searchable database of the 1 billion word content. (Still underway, please send help TT)
+            </li>
+            <li>
+                <strong class="highlight">The Better Pronto Project:</strong> I'm currently working on <a href="https://github.com/Better-Pronto" target="_blank" rel="noopener noreferrer">The Better Pronto Project</a>, which aims to enhance Stanford OHS's official chat platform by developing a faster, more intuitive, and overall improved client.
+            </li>
         </ul>
     </section>
     <section id="contact" style="display: none;">
@@ -95,7 +108,36 @@
         <img src="potato.png" alt="Potato">
         <p>This potato has absoutely no lore whatsoever</p>
     </section>
+    
+    <!-- New Blog Section -->
+    <section id="blog" style="display: none;">
+        <h2>My Blog</h2>
+        <div class="blog-container">
+            <div class="blog-grid"></div>
+            <div class="blog-content">
+                <div class="blog-loading">
+                    <div class="blog-spinner"></div>
+                    <p>Loading blog entries...</p>
+                </div>
+                <div class="blog-entry"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Make sure jQuery is loaded before marked -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Ensure the marked library is correctly loaded -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Verify that marked is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof marked === 'undefined') {
+                console.error('Marked library not loaded properly');
+            } else {
+                console.log('Marked library loaded successfully');
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

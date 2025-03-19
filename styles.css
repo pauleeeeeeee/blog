@@ -12,11 +12,13 @@ body::-webkit-scrollbar {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background-color: #1e1e1e;
     position: relative;
     color: #f0f0f0;
     z-index: 1; /* Ensure content is above the background */
+    line-height: 1.6;
+    letter-spacing: 0.01em;
 }
 
 body::before {
@@ -186,6 +188,7 @@ nav a:hover {
 section {
     padding: 2rem;
     z-index: 10; /* Higher z-index to appear above background animations */
+    animation: sectionFadeIn 0.5s ease;
 }
 
 @media (max-width: 768px) {
@@ -754,4 +757,575 @@ body.light-mode .btn2::after {
 body.light-mode .btn2:hover {
     color: #8C1515; /* Stanford red color on hover */
     border: 2px solid #8C1515; /* Stanford red border on hover */
+}
+
+/* Blog Section Styles */
+#blog {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.blog-tabs {
+    display: none; /* Hide old tabs */
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Blog Card Styling Updates - Sharper corners and neutral colors */
+.blog-card {
+    position: relative;
+    height: 180px;
+    border-radius: 4px; /* Sharper corners (reduced from 12px) */
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2a2a2a;
+    background-image: linear-gradient(
+        135deg,
+        rgba(50, 50, 50, 0.1) 0%,  /* Removed red, using neutral gray */
+        rgba(30, 30, 30, 0.5) 100%
+    );
+    transition: transform 0.4s ease, filter 0.4s ease;
+    z-index: 1;
+}
+
+body.light-mode .blog-card-background {
+    background: #f0f0f0;
+    background-image: linear-gradient(
+        135deg,
+        rgba(220, 220, 220, 0.3) 0%, /* Neutral light gray */
+        rgba(240, 240, 240, 0.8) 100%
+    );
+}
+
+.blog-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.blog-card-content h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+body.light-mode .blog-card-content h3 {
+    color: #1e1e1e;
+}
+
+.blog-card-icon {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.blog-card-icon svg {
+    stroke: #fff;
+}
+
+body.light-mode .blog-card-icon svg {
+    stroke: #1e1e1e;
+}
+
+/* Card hover and active states - Neutral colors */
+.blog-card:hover .blog-card-background,
+.blog-card.active .blog-card-background {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.blog-card:hover .blog-card-icon,
+.blog-card.active .blog-card-icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blog-card.active .blog-card-background {
+    background-image: linear-gradient(
+        135deg,
+        rgba(60, 60, 60, 0.4) 0%, /* Darker neutral gray for active state */
+        rgba(30, 30, 30, 0.7) 100%
+    );
+}
+
+body.light-mode .blog-card.active .blog-card-background {
+    background-image: linear-gradient(
+        135deg,
+        rgba(200, 200, 200, 0.5) 0%, /* Lighter neutral gray for active state */
+        rgba(240, 240, 240, 0.9) 100%
+    );
+}
+
+.blog-card:hover .blog-card-content,
+.blog-card.active .blog-card-content {
+    transform: translateY(-5px);
+}
+
+/* Blog content area - Sharper corners */
+.blog-content {
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 4px; /* Sharper corners (reduced from 12px) */
+    padding: 2rem;
+    min-height: 400px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+}
+
+/* Blog loading container - Sharper corners */
+.blog-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 4px; /* Sharper corners (reduced from 8px) */
+    z-index: 5;
+}
+
+/* Adding welcome message placeholder */
+.blog-welcome {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.blog-welcome h3 {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: #f0f0f0;
+}
+
+body.light-mode .blog-welcome h3 {
+    color: #1e1e1e;
+}
+
+.blog-welcome p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.blog-entry {
+    transition: all 0.5s ease;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.blog-entry h1 {
+    color: #8C1515;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(140, 21, 21, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.blog-entry h2 {
+    margin-top: 2rem;
+    color: #f0f0f0;
+}
+
+.blog-entry h3 {
+    color: #ccc;
+    margin-top: 1.5rem;
+}
+
+.blog-entry p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.blog-entry ul, .blog-entry ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.blog-entry li {
+    margin-bottom: 0.5rem;
+}
+
+.blog-entry a {
+    color: #8C1515;
+    text-decoration: none;
+    border-bottom: 1px dotted #8C1515;
+}
+
+.blog-entry a:hover {
+    border-bottom: 1px solid #8C1515;
+}
+
+.blog-entry blockquote {
+    border-left: 3px solid #8C1515;
+    padding-left: 1rem;
+    margin-left: 0;
+    color: #ccc;
+    font-style: italic;
+}
+
+.blog-entry code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.blog-entry pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.blog-entry pre code {
+    background: none;
+    padding: 0;
+}
+
+.blog-error {
+    color: #ff5555;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 85, 85, 0.1);
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid #ff5555;
+}
+
+.blog-error {
+    color: #ff5555;
+    text-align: center;
+    padding: 2rem;
+}
+
+.blog-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 8px;
+    z-index: 5;
+}
+
+.blog-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(140, 21, 21, 0.3);
+    border-top: 4px solid #8C1515;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.blog-error {
+    color: #ff5555;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Light mode adjustments for blog */
+body.light-mode .blog-tab {
+    background: rgba(240, 240, 240, 0.7);
+    border: 1px solid rgba(30, 30, 30, 0.2);
+    color: #1e1e1e;
+}
+
+body.light-mode .blog-tab.active {
+    background: #8C1515;
+    border-color: #8C1515;
+    color: #f0f0f0;
+}
+
+body.light-mode .blog-tab:hover:not(.active) {
+    background: rgba(140, 21, 21, 0.1);
+    border-color: #8C1515;
+}
+
+body.light-mode .blog-content {
+    background: rgba(240, 240, 240, 0.7);
+    color: #1e1e1e;
+}
+
+body.light-mode .blog-loading {
+    background: rgba(240, 240, 240, 0.9);
+}
+
+body.light-mode .blog-entry h1 {
+    color: #8C1515;
+    border-bottom-color: rgba(140, 21, 21, 0.3);
+}
+
+body.light-mode .blog-entry h2 {
+    color: #1e1e1e;
+}
+
+body.light-mode .blog-entry h3 {
+    color: #333;
+}
+
+body.light-mode .blog-entry blockquote {
+    color: #555;
+}
+
+body.light-mode .blog-entry code {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .blog-entry pre {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Improved Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+p {
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+}
+
+/* Project Section Enhancements */
+#projects {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#projects h2 {
+    margin-bottom: 1.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+#projects h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 3px;
+    background: #8C1515;
+    transition: width 0.8s ease;
+}
+
+#projects h2.animated-header::after {
+    width: 100%;
+}
+
+#projects ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#projects li {
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    background: rgba(30, 30, 30, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #8C1515;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+body.light-mode #projects li {
+    background: rgba(240, 240, 240, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#projects li:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background: rgba(40, 40, 40, 0.6);
+}
+
+body.light-mode #projects li:hover {
+    background: rgba(250, 250, 250, 0.6);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Project links styling */
+#projects a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+#projects a:hover {
+    background: rgba(0, 170, 255, 0.1);
+    color: #00c3ff;
+    transform: translateY(-2px);
+}
+
+body.light-mode #projects a {
+    color: #0077cc;
+}
+
+body.light-mode #projects a:hover {
+    background: rgba(0, 119, 204, 0.1);
+    color: #0095ff;
+}
+
+.project-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+
+/* Text Animation Classes */
+.animated-text {
+    animation: slideInFromBottom 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.fade-in-text {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+.slide-in-text {
+    animation: slideInFromRight 0.5s ease forwards;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Text highlight effect */
+.highlight {
+    background: linear-gradient(120deg, rgba(140, 21, 21, 0.2) 0%, rgba(140, 21, 21, 0.1) 100%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Improve section transitions */
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Improve text readability */
+body:not(.light-mode) {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhance blockquotes */
+blockquote {
+    border-left: 4px solid #8C1515;
+    padding-left: 1.2rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 3rem;
+    position: absolute;
+    left: -10px;
+    top: -20px;
+    opacity: 0.2;
+    font-family: Georgia, serif;
 }
